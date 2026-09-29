@@ -1,0 +1,291 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans bg-[#f8fafc] text-slate-900 dark:bg-[#060913] dark:text-slate-100 antialiased overflow-x-hidden;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-700/80 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-blue-500/80 dark:bg-sky-500/80;
+}
+
+/* 3D Perspective & Ambient Lighting */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-2000 {
+  perspective: 2000px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* 3D Glassmorphism & Depth Panels */
+.glass-panel-3d {
+  @apply bg-white/85 dark:bg-[#0c1222]/85 backdrop-blur-xl border border-slate-200/90 dark:border-slate-800/80;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  transform: translateZ(0);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow;
+}
+
+.glass-panel-3d:hover {
+  transform: translateY(-4px) translateZ(12px);
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.15), 0 0 25px 2px rgba(37, 99, 235, 0.12);
+}
+
+.dark .glass-panel-3d {
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.dark .glass-panel-3d:hover {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 30px 4px rgba(56, 189, 248, 0.18);
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+/* 3D Interactive Card */
+.card-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.card-3d:hover {
+  transform: perspective(1000px) translateY(-5px) rotateX(2deg) rotateY(-1deg) scale(1.01);
+  box-shadow: 0 25px 40px -15px rgba(15, 23, 42, 0.18), 0 0 20px 1px rgba(59, 130, 246, 0.15);
+}
+
+.dark .card-3d:hover {
+  box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.7), 0 0 25px 2px rgba(56, 189, 248, 0.2);
+}
+
+/* 3D Floating Action Button */
+.btn-3d {
+  @apply relative font-semibold transition-all duration-200 active:translate-y-0.5;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 2px 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.btn-3d:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 3px 0 0 rgba(0, 0, 0, 0.25);
+}
+
+/* National Gold & Tricolor Accents */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #b45309 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tricolor-glow {
+  box-shadow: 0 0 30px -5px rgba(255, 153, 51, 0.25), 0 0 30px -5px rgba(19, 136, 8, 0.25);
+}
+
+/* Animated Ambient Glow Orbs */
+.ambient-glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  opacity: 0.35;
+  z-index: 0;
+  animation: floatOrb 12s ease-in-out infinite alternate;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -20px) scale(1.1); }
+  100% { transform: translate(-20px, 30px) scale(0.95); }
+}
+
+/* Markdown styling inside AI responses */
+.markdown-content {
+  @apply text-sm leading-relaxed;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4 {
+  @apply font-bold text-slate-900 dark:text-slate-100 mt-5 mb-2.5 tracking-tight;
+}
+
+.markdown-content h1 { @apply text-xl border-b border-slate-200 dark:border-slate-800 pb-1.5; }
+.markdown-content h2 { @apply text-lg text-blue-900 dark:text-sky-300; }
+.markdown-content h3 { @apply text-base text-blue-700 dark:text-blue-400; }
+.markdown-content h4 { @apply text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400; }
+
+.markdown-content p {
+  @apply mb-3 text-slate-800 dark:text-slate-200;
+}
+
+.markdown-content ul {
+  @apply list-disc list-inside space-y-1.5 mb-3 text-slate-800 dark:text-slate-200;
+}
+
+.markdown-content ol {
+  @apply list-decimal list-inside space-y-1.5 mb-3 text-slate-800 dark:text-slate-200;
+}
+
+.markdown-content code {
+  @apply font-mono text-xs px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-800 dark:text-sky-300 border border-blue-200 dark:border-blue-800 font-medium;
+}
+
+.markdown-content pre {
+  @apply p-4 rounded-xl bg-slate-950 text-slate-100 dark:bg-black font-mono text-xs overflow-x-auto my-4 border border-slate-800 shadow-inner;
+}
+
+.markdown-content table {
+  @apply w-full border-collapse my-4 text-xs border border-slate-200 dark:border-slate-700/80 rounded-xl overflow-hidden shadow-sm;
+}
+
+.markdown-content th {
+  @apply bg-slate-100 dark:bg-slate-800/90 text-slate-900 dark:text-slate-100 font-bold p-3 border border-slate-200 dark:border-slate-700/80 text-left uppercase tracking-wider text-[11px];
+}
+
+.markdown-content td {
+  @apply p-2.5 border border-slate-200 dark:border-slate-700/80 text-slate-700 dark:text-slate-300;
+}
+
+.markdown-content tr:nth-child(even) {
+  @apply bg-slate-50/70 dark:bg-slate-900/40;
+}
+
+.markdown-content blockquote {
+  @apply border-l-4 border-amber-500 pl-4 py-2 italic bg-amber-50/80 dark:bg-amber-950/30 text-amber-900 dark:text-amber-200 rounded-r-lg my-3 text-xs shadow-sm;
+}
+
+/* Audio Waveform Pulse for Voice Dictation */
+@keyframes wavePulse {
+  0%, 100% { height: 6px; }
+  50% { height: 22px; }
+}
+
+.voice-bar {
+  animation: wavePulse 1.2s ease-in-out infinite;
+}
+
+.voice-bar:nth-child(2) { animation-delay: 0.2s; }
+.voice-bar:nth-child(3) { animation-delay: 0.4s; }
+.voice-bar:nth-child(4) { animation-delay: 0.6s; }
+.voice-bar:nth-child(5) { animation-delay: 0.8s; }
+
+/* Grid Backdrop */
+.bg-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+}
+
+.dark .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+}
+
+/* ==========================================================================
+   Dynamic Cursor Spotlight & Universal Device Compatibility
+   ========================================================================== */
+
+/* Cursor Spotlight Ambient Background Effect */
+.cursor-spotlight-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    650px circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px),
+    rgba(99, 102, 241, 0.07),
+    transparent 80%
+  );
+}
+
+.dark .cursor-spotlight-layer {
+  background: radial-gradient(
+    700px circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px),
+    rgba(99, 102, 241, 0.12),
+    transparent 80%
+  );
+}
+
+/* Card-level Interactive Spotlight (Illuminates border and surface under cursor) */
+.card-spotlight {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card-spotlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      300px circle at var(--card-mouse-x, -500px) var(--card-mouse-y, -500px),
+      rgba(99, 102, 241, 0.14),
+      transparent 80%
+    );
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    z-index: 1;
+    border-radius: inherit;
+  }
+
+  .card-spotlight:hover::before {
+    opacity: 1;
+  }
+
+  .card-spotlight:hover {
+    transform: translateY(-3px);
+  }
+}
+
+/* Universal Cross-Browser & Mobile Adaptations */
+@supports (-webkit-touch-callout: none) {
+  /* iOS Safari specific fixes */
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+    min-height: 100dvh;
+  }
+}
+
+/* Smooth Touch Momentum Scrolling */
+* {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Mobile Safe-Area insets for notch devices (iPhone / iPad / Modern Android) */
+.safe-padding-top {
+  padding-top: max(1rem, env(safe-area-inset-top));
+}
+.safe-padding-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
