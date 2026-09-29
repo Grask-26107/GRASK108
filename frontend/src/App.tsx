@@ -14,6 +14,7 @@ import { LoginPage } from './components/LoginPage';
 import { UserProfileModal } from './components/UserProfileModal';
 import { PortalHome } from './components/PortalHome';
 import { ToastContainer, ToastMessage } from './components/Toast';
+import { NoticeModal } from './components/NoticeModal';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { ChatMode, ChatMessage, Citation, UserProfile } from './types';
 
@@ -40,6 +41,7 @@ export const App: React.FC = () => {
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
   const [isSchemeFinderOpen, setIsSchemeFinderOpen] = useState(false);
   const [isProcurementModalOpen, setIsProcurementModalOpen] = useState(false);
+  const [isNoticeOpen, setIsNoticeOpen] = useState(true);
   const [applyModalInitialQuery, setApplyModalInitialQuery] = useState('');
   const [bisServiceSection, setBisServiceSection] = useState<
     'standards_clubs' | 'nits_training' | 'lab_recognition' | 'consumer_protection' | 'departments'
@@ -172,6 +174,7 @@ export const App: React.FC = () => {
           darkMode={darkMode}
           onToggleDarkMode={() => setDarkMode(!darkMode)}
         />
+        <NoticeModal isOpen={isNoticeOpen} onClose={() => setIsNoticeOpen(false)} />
         <ToastContainer toasts={toasts} removeToast={removeToast} />
       </div>
     );
@@ -344,6 +347,9 @@ export const App: React.FC = () => {
         onLogout={handleLogout}
         addToast={addToast}
       />
+
+      {/* Official Demonstration Notice Modal */}
+      <NoticeModal isOpen={isNoticeOpen} onClose={() => setIsNoticeOpen(false)} />
 
       {/* Toast Notifications */}
       <ToastContainer toasts={toasts} removeToast={removeToast} />
